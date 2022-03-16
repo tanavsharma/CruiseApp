@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
     var body: some View {
@@ -20,10 +21,24 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct Home: View{
+    
+    @State var show = false
+    
     var body: some View{
         VStack{
-            
-            Register()
+            NavigationView{
+                ZStack{
+                    NavigationLink(destination: Register(show: self.$show), isActive: self.$show){
+                        
+                    }
+                    .hidden()
+                    
+                    Login(show: self.$show)
+                }
+                .navigationTitle("")
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
+            }
         }
     }
 }
@@ -35,6 +50,8 @@ struct Login: View {
     @State var email = ""
     @State var pass = ""
     @State var visible = false
+    @Binding var show : Bool
+    let auth = Auth.auth()
     
     var body: some View{
         ZStack(alignment: .topTrailing){
@@ -98,7 +115,12 @@ struct Login: View {
                     
                     // MARK: Login Button
                     Button(action: {
-                        
+                        auth.signIn(withEmail: email, password: pass){ result, error in
+                            guard result != nil,  error == nil else{
+                                return
+                            }
+                            //Success
+                        }
                     }){
                         Text("Log In")
                             .foregroundColor(.white)
@@ -114,7 +136,7 @@ struct Login: View {
             }
             
             Button(action: {
-                
+                self.show.toggle()
             }){
                 Text("Register\nHere")
                     .fontWeight(.bold)
@@ -122,7 +144,6 @@ struct Login: View {
             }
             .padding()
         }
-
     }
 }
 
@@ -135,9 +156,11 @@ struct Register: View {
     @State var repass = ""
     @State var visible = false
     @State var revisible = false
+    @Binding var show : Bool
+    let auth = Auth.auth()
     
     var body: some View{
-        ZStack(alignment: .topTrailing){
+        ZStack(alignment: .topLeading){
             GeometryReader{_ in
                 VStack{
                     // MARK: Logo
@@ -207,7 +230,13 @@ struct Register: View {
                     
                     // MARK: Login Button
                     Button(action: {
-                        
+                        auth.createUser(withEmail: email, password: pass){ result, error in
+                            guard result != nil, error == nil else{
+                                return
+                            }
+                            //Success
+                            
+                        }
                     }){
                         Text("Sign Up")
                             .foregroundColor(.white)
@@ -223,14 +252,16 @@ struct Register: View {
             }
             
             Button(action: {
-                
+                self.show.toggle()
             }){
-                Text("Alredy A\nMember?")
+                Text("Login\nHere")
                     .fontWeight(.bold)
                     .foregroundColor(Color("Theme"))
             }
             .padding()
         }
-
+        .navigationTitle("")
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
