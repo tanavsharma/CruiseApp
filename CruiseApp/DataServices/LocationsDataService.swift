@@ -14,7 +14,7 @@ class LocationsDataService {
         Location(
             name: "CN Tower Cruise",
             cityName: "Toronto",
-            coordinates: CLLocationCoordinate2D(latitude: 43.6426, longitude: 79.3871),
+            coordinates: CLLocationCoordinate2D(latitude: 43.642567, longitude: -79.387054),
             description: "We pride ourselves in providing the best service to all our customers. Call us today, to plan your next get away. Leave the headaches to us! ",
             imageName: "cntower"),
     ]

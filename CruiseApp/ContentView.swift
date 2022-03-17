@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseAuth
 import FirebaseDatabase
+import MapKit
 
 struct ContentView: View {
     var body: some View {
@@ -21,6 +22,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+// MARK: Home View
 struct Home: View{
     
     @State var show = false
@@ -297,17 +299,10 @@ struct UserScreen: View {
 
     
     var body: some View{
-        ZStack(alignment: .topLeading){
-            GeometryReader{_ in
-                VStack{
-                    List{
-                        ForEach(vm.locations){
-                            Text($0.name)
-                        }
-                    }
-                }
-                .padding(.horizontal, 25)
-            }
+        ZStack{
+            Map(coordinateRegion: $vm.mapRegion)
+                .ignoresSafeArea()
+            
         }
     }
 }
@@ -315,12 +310,31 @@ struct UserScreen: View {
 // MARK: MAP Screen ViewModel
 class LocationsViewModel: ObservableObject{
     @Published var locations: [Location]
+    @Published var mapLocation: Location{
+        didSet{
+            updateMapRegion(location: mapLocation)
+        }
+    }
+    @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion()
+    let mapSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
     
     init(){
         let locations = LocationsDataService.locations
         self.locations = locations
+        self.mapLocation = locations.first!
+        self.updateMapRegion(location: locations.first!)
+    }
+    
+    private func updateMapRegion(location: Location){
+        withAnimation(.easeInOut){
+            mapRegion = MKCoordinateRegion(
+                center: location.coordinates,
+                span: mapSpan)
+        }
     }
 }
+
+
 
 // MARK: More Information From User
 struct MoreInformation: View {
