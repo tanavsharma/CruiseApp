@@ -290,23 +290,35 @@ struct Register: View {
     }
 }
 
-// MARK: User Profile or Main Screen
+// MARK: MAP SCREEN
 struct UserScreen: View {
     @Binding var sucessLogin : Bool
-    let auth = Auth.auth()
-    private let database = Database.database().reference()
-    var refHandle: DatabaseHandle?
+    @StateObject private var vm = LocationsViewModel()
 
     
     var body: some View{
         ZStack(alignment: .topLeading){
             GeometryReader{_ in
                 VStack{
-                    
+                    List{
+                        ForEach(vm.locations){
+                            Text($0.name)
+                        }
+                    }
                 }
                 .padding(.horizontal, 25)
             }
         }
+    }
+}
+
+// MARK: MAP Screen ViewModel
+class LocationsViewModel: ObservableObject{
+    @Published var locations: [Location]
+    
+    init(){
+        let locations = LocationsDataService.locations
+        self.locations = locations
     }
 }
 

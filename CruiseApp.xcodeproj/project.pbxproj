@@ -43,6 +43,8 @@
 		0382DAC827E27F84007F6B66 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 0382DAC727E27F84007F6B66 /* FirebaseStorageCombine-Community */; };
 		0382DACA27E27F84007F6B66 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 0382DAC927E27F84007F6B66 /* FirebaseStorageSwift-Beta */; };
 		0382DACC27E28386007F6B66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0382DACB27E28386007F6B66 /* GoogleService-Info.plist */; };
+		03BA070E27E38F300073DB1A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA070D27E38F300073DB1A /* Location.swift */; };
+		03BA071127E390390073DB1A /* LocationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA071027E390390073DB1A /* LocationsDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		0342D91727E13C4E008AE932 /* CruiseAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CruiseAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0382DACB27E28386007F6B66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0382DACD27E2838C007F6B66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		03BA070D27E38F300073DB1A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		03BA071027E390390073DB1A /* LocationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,8 @@
 		0342D8F927E13C4C008AE932 /* CruiseApp */ = {
 			isa = PBXGroup;
 			children = (
+				03BA070F27E38FED0073DB1A /* DataServices */,
+				03BA070C27E38F180073DB1A /* Models */,
 				0342D8FA27E13C4C008AE932 /* CruiseAppApp.swift */,
 				0342D8FC27E13C4C008AE932 /* ContentView.swift */,
 				0342D8FE27E13C4E008AE932 /* Assets.xcassets */,
@@ -186,6 +192,22 @@
 				0342D91727E13C4E008AE932 /* CruiseAppUITestsLaunchTests.swift */,
 			);
 			path = CruiseAppUITests;
+			sourceTree = "<group>";
+		};
+		03BA070C27E38F180073DB1A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				03BA070D27E38F300073DB1A /* Location.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		03BA070F27E38FED0073DB1A /* DataServices */ = {
+			isa = PBXGroup;
+			children = (
+				03BA071027E390390073DB1A /* LocationsDataService.swift */,
+			);
+			path = DataServices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,7 +374,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03BA071127E390390073DB1A /* LocationsDataService.swift in Sources */,
 				0342D8FD27E13C4C008AE932 /* ContentView.swift in Sources */,
+				03BA070E27E38F300073DB1A /* Location.swift in Sources */,
 				0342D8FB27E13C4C008AE932 /* CruiseAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
