@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseDatabase
 
 struct ContentView: View {
     var body: some View {
@@ -23,17 +24,29 @@ struct ContentView_Previews: PreviewProvider {
 struct Home: View{
     
     @State var show = false
+    @State var sucessLogin = false
+    @State var successSignup = false
     
     var body: some View{
         VStack{
             NavigationView{
                 ZStack{
-                    NavigationLink(destination: Register(show: self.$show), isActive: self.$show){
+                    NavigationLink(destination: Register(show: self.$show, successSignup: self.$successSignup), isActive: self.$show){
                         
                     }
                     .hidden()
                     
-                    Login(show: self.$show)
+                    NavigationLink(destination: UserScreen(sucessLogin: self.$sucessLogin), isActive: self.$sucessLogin){
+                        
+                    }
+                    .hidden()
+                    
+                    NavigationLink(destination: MoreInformation(successSignup: self.$successSignup, sucessLogin: self.$sucessLogin), isActive: self.$successSignup){
+                        
+                    }
+                    .hidden()
+                    
+                    Login(show: self.$show, sucessLogin: self.$sucessLogin)
                 }
                 .navigationTitle("")
                 .navigationBarHidden(true)
@@ -51,6 +64,7 @@ struct Login: View {
     @State var pass = ""
     @State var visible = false
     @Binding var show : Bool
+    @Binding var sucessLogin: Bool
     let auth = Auth.auth()
     
     var body: some View{
@@ -72,7 +86,7 @@ struct Login: View {
                         .fontWeight(.bold)
                         .foregroundColor(self.color)
                         .padding(.top, 25)
-                                
+                    
                     // MARK: Email Text Field
                     TextField("Email", text: self.$email)
                         .padding()
@@ -117,9 +131,15 @@ struct Login: View {
                     Button(action: {
                         auth.signIn(withEmail: email, password: pass){ result, error in
                             guard result != nil,  error == nil else{
+                                
+                                self.sucessLogin.toggle()
                                 return
+                                
                             }
-                            //Success
+                            
+                            // Success
+                            
+                            
                         }
                     }){
                         Text("Log In")
@@ -130,7 +150,7 @@ struct Login: View {
                     .background(Color("Theme"))
                     .cornerRadius(10)
                     .padding(.top, 15)
-                
+                    
                 }
                 .padding(.horizontal, 25)
             }
@@ -157,6 +177,7 @@ struct Register: View {
     @State var visible = false
     @State var revisible = false
     @Binding var show : Bool
+    @Binding var successSignup: Bool
     let auth = Auth.auth()
     
     var body: some View{
@@ -232,9 +253,12 @@ struct Register: View {
                     Button(action: {
                         auth.createUser(withEmail: email, password: pass){ result, error in
                             guard result != nil, error == nil else{
+                                
                                 return
                             }
-                            //Success
+                            self.successSignup.toggle()
+                            
+                            
                             
                         }
                     }){
@@ -265,3 +289,121 @@ struct Register: View {
         .navigationBarBackButtonHidden(true)
     }
 }
+
+// MARK: User Profile or Main Screen
+struct UserScreen: View {
+    @Binding var sucessLogin : Bool
+    let auth = Auth.auth()
+    private let database = Database.database().reference()
+    var refHandle: DatabaseHandle?
+
+    
+    var body: some View{
+        ZStack(alignment: .topLeading){
+            GeometryReader{_ in
+                VStack{
+                    
+                }
+                .padding(.horizontal, 25)
+            }
+        }
+    }
+}
+
+// MARK: More Information From User
+struct MoreInformation: View {
+    
+    @State var color = Color.black.opacity(0.7)
+    @State var first_name = ""
+    @State var last_name = ""
+    @State var address = ""
+    @State var city = ""
+    @State var country = ""
+    @State var postalcode = ""
+    @Binding var successSignup : Bool
+    @Binding var sucessLogin : Bool
+    let auth = Auth.auth()
+    private let database = Database.database().reference()
+    
+    var body: some View{
+        ZStack(alignment: .bottomLeading){
+            GeometryReader{_ in
+                VStack{
+                    // MARK: Logo
+                    Text("We need more information,\nplease fill all fields below.")
+                        .font(.title3)
+                        .padding(.top, 15)
+                                
+                    // MARK: First Name Text Field
+                    TextField("First Name", text: self.$first_name)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.first_name != "" ? Color("Theme"): self.color,lineWidth: 2))
+                    
+                    // MARK: Last Name Text Field
+                    TextField("Last Name", text: self.$last_name)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.last_name != "" ? Color("Theme"): self.color,lineWidth: 2))
+                    
+                    // MARK: Address Text Field
+                    TextField("Address", text: self.$address)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.address != "" ? Color("Theme"): self.color,lineWidth: 2))
+                    
+                    // MARK: Country Text Field
+                    TextField("Country", text: self.$country)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.country != "" ? Color("Theme"): self.color,lineWidth: 2))
+                    
+                    // MARK: City Text Field
+                    TextField("City", text: self.$city)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.city != "" ? Color("Theme"): self.color,lineWidth: 2))
+                    
+                    // MARK: Postal Code Text Field
+                    TextField("Postal Code or Zip Code", text: self.$postalcode)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 4).stroke(self.postalcode != "" ? Color("Theme"): self.color,lineWidth: 2))
+ 
+                    
+                    // MARK: Login Button
+                    Button(action: {
+                        var user: [String:String] = [:]
+                        user["First Name"] = first_name
+                        user["Last Name"] = last_name
+                        user["Address"] = address
+                        user["Country"] = country
+                        user["City"] = city
+                        user["Postal Code"] = postalcode
+                        
+                        self.sucessLogin.toggle()
+                        database.child(auth.currentUser!.uid).setValue(user)
+                    }){
+                        Text("Next")
+                            .foregroundColor(.white)
+                            .padding(.vertical)
+                            .frame(width: UIScreen.main.bounds.width - 50)
+                    }
+                    .background(Color("Theme"))
+                    .cornerRadius(10)
+                    .padding(.top, 15)
+                
+                }
+                .padding(.horizontal, 25)
+            }
+            
+            Button(action: {
+                
+            }){
+                Text("Cancle")
+                    .fontWeight(.bold)
+                    .foregroundColor(Color("Theme"))
+            }
+            .padding()
+        }
+        .navigationTitle("")
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
+    }
+}
+
+
