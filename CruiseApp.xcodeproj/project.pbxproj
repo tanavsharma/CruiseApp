@@ -45,6 +45,8 @@
 		0382DACC27E28386007F6B66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0382DACB27E28386007F6B66 /* GoogleService-Info.plist */; };
 		03BA070E27E38F300073DB1A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA070D27E38F300073DB1A /* Location.swift */; };
 		03BA071127E390390073DB1A /* LocationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA071027E390390073DB1A /* LocationsDataService.swift */; };
+		03BA071727E3A6CF0073DB1A /* LocationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA071627E3A6CF0073DB1A /* LocationsListView.swift */; };
+		03BA071A27E3C1E50073DB1A /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA071927E3C1E50073DB1A /* LocationsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		0382DACD27E2838C007F6B66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		03BA070D27E38F300073DB1A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		03BA071027E390390073DB1A /* LocationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsDataService.swift; sourceTree = "<group>"; };
+		03BA071627E3A6CF0073DB1A /* LocationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListView.swift; sourceTree = "<group>"; };
+		03BA071927E3C1E50073DB1A /* LocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,8 @@
 		0342D8F927E13C4C008AE932 /* CruiseApp */ = {
 			isa = PBXGroup;
 			children = (
+				03BA071827E3C1CE0073DB1A /* ViewModels */,
+				03BA071527E3A6A80073DB1A /* Views */,
 				03BA070F27E38FED0073DB1A /* DataServices */,
 				03BA070C27E38F180073DB1A /* Models */,
 				0342D8FA27E13C4C008AE932 /* CruiseAppApp.swift */,
@@ -208,6 +214,22 @@
 				03BA071027E390390073DB1A /* LocationsDataService.swift */,
 			);
 			path = DataServices;
+			sourceTree = "<group>";
+		};
+		03BA071527E3A6A80073DB1A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				03BA071627E3A6CF0073DB1A /* LocationsListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		03BA071827E3C1CE0073DB1A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				03BA071927E3C1E50073DB1A /* LocationsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,6 +396,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03BA071727E3A6CF0073DB1A /* LocationsListView.swift in Sources */,
+				03BA071A27E3C1E50073DB1A /* LocationsViewModel.swift in Sources */,
 				03BA071127E390390073DB1A /* LocationsDataService.swift in Sources */,
 				0342D8FD27E13C4C008AE932 /* ContentView.swift in Sources */,
 				03BA070E27E38F300073DB1A /* Location.swift in Sources */,
@@ -546,7 +570,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -576,7 +600,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

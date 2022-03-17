@@ -19,6 +19,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+.previewInterfaceOrientation(.landscapeLeft)
     }
 }
 
@@ -303,7 +304,37 @@ struct UserScreen: View {
             Map(coordinateRegion: $vm.mapRegion)
                 .ignoresSafeArea()
             
+            VStack(spacing: 0){
+                VStack{
+                    Button(action: vm.toggleLocationsList){
+                        Text(vm.mapLocation.name + ", " + vm.mapLocation.cityName)
+                            .font(.title2)
+                            .fontWeight(.black)
+                            .foregroundColor(.white)
+                            .frame(height: 55)
+                            .frame(maxWidth: .infinity)
+                            .background(Color("Theme"))
+                            .overlay(alignment: .leading){
+                                Image(systemName: "arrow.down")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .padding()
+                            }
+                    }
+                    if vm.showLocationsList{
+                        LocationsListView()
+                    }
+                }
+                .background(.thickMaterial)
+                .cornerRadius(10)
+                .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 15)
+                .padding()
+                Spacer()
+            }
         }
+        .navigationTitle("")
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 
@@ -315,8 +346,13 @@ class LocationsViewModel: ObservableObject{
             updateMapRegion(location: mapLocation)
         }
     }
+    
+    //Show current region on map
     @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion()
     let mapSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+    
+    // Show list of locations
+    @Published var showLocationsList: Bool = false
     
     init(){
         let locations = LocationsDataService.locations
@@ -330,6 +366,12 @@ class LocationsViewModel: ObservableObject{
             mapRegion = MKCoordinateRegion(
                 center: location.coordinates,
                 span: mapSpan)
+        }
+    }
+    
+    func toggleLocationsList(){
+        withAnimation(.easeInOut){
+            showLocationsList.toggle()
         }
     }
 }
