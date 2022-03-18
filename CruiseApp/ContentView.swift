@@ -319,6 +319,7 @@ struct UserScreen: View {
                                     .font(.headline)
                                     .foregroundColor(.white)
                                     .padding()
+                                    .rotationEffect(Angle(degrees: vm.showLocationsList ? 180 : 0))
                             }
                     }
                     if vm.showLocationsList{
