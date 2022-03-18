@@ -322,7 +322,7 @@ struct UserScreen: View {
                             }
                     }
                     if vm.showLocationsList{
-                        LocationsListView()
+                        LocationsListView().environmentObject(vm)
                     }
                 }
                 .background(.thickMaterial)

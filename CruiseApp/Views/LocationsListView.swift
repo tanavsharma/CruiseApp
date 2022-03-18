@@ -28,6 +28,7 @@ struct LocationsListView: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 4)
+                    .listRowBackground(Color.clear)
                 }
             }
         }
