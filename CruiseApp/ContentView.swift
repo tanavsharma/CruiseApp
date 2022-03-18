@@ -19,7 +19,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-.previewInterfaceOrientation(.landscapeLeft)
+.previewInterfaceOrientation(.portrait)
     }
 }
 
@@ -301,7 +301,11 @@ struct UserScreen: View {
     
     var body: some View{
         ZStack{
-            Map(coordinateRegion: $vm.mapRegion)
+            Map(coordinateRegion: $vm.mapRegion,
+                annotationItems: vm.locations,
+                annotationContent: {location in
+                MapMarker(coordinate: location.coordinates, tint: Color("Theme"))
+            })
                 .ignoresSafeArea()
             
             VStack(spacing: 0){
@@ -313,6 +317,7 @@ struct UserScreen: View {
                             .foregroundColor(.white)
                             .frame(height: 55)
                             .frame(maxWidth: .infinity)
+                            .animation(.none, value: vm.mapLocation)
                             .background(Color("Theme"))
                             .overlay(alignment: .leading){
                                 Image(systemName: "arrow.down")
@@ -331,6 +336,20 @@ struct UserScreen: View {
                 .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 15)
                 .padding()
                 Spacer()
+                
+                ZStack{
+                    ForEach(vm.locations) { location in
+                        if vm.mapLocation == location{
+                            LocationPreviewView(location: location)
+                                .shadow(color: Color.black.opacity(0.3), radius: 20)
+                                .padding()
+                                .transition(.asymmetric(
+                                    insertion: .move(edge: .trailing),
+                                    removal: .move(edge: .leading)))
+                        }
+                    }
+                }
+                .environmentObject(vm)
             }
         }
         .navigationTitle("")

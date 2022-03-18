@@ -47,6 +47,7 @@
 		03BA071127E390390073DB1A /* LocationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA071027E390390073DB1A /* LocationsDataService.swift */; };
 		03BA071727E3A6CF0073DB1A /* LocationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA071627E3A6CF0073DB1A /* LocationsListView.swift */; };
 		03BA071A27E3C1E50073DB1A /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA071927E3C1E50073DB1A /* LocationsViewModel.swift */; };
+		03BA071C27E44FF50073DB1A /* LocationPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA071B27E44FF50073DB1A /* LocationPreviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		03BA071027E390390073DB1A /* LocationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsDataService.swift; sourceTree = "<group>"; };
 		03BA071627E3A6CF0073DB1A /* LocationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListView.swift; sourceTree = "<group>"; };
 		03BA071927E3C1E50073DB1A /* LocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
+		03BA071B27E44FF50073DB1A /* LocationPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPreviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				03BA071627E3A6CF0073DB1A /* LocationsListView.swift */,
+				03BA071B27E44FF50073DB1A /* LocationPreviewView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				03BA071A27E3C1E50073DB1A /* LocationsViewModel.swift in Sources */,
 				03BA071127E390390073DB1A /* LocationsDataService.swift in Sources */,
 				0342D8FD27E13C4C008AE932 /* ContentView.swift in Sources */,
+				03BA071C27E44FF50073DB1A /* LocationPreviewView.swift in Sources */,
 				03BA070E27E38F300073DB1A /* Location.swift in Sources */,
 				0342D8FB27E13C4C008AE932 /* CruiseAppApp.swift in Sources */,
 			);
