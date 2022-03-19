@@ -6,6 +6,42 @@
 //
 
 import SwiftUI
+import UserNotifications
+
+class NotificationManager{
+    static let instance = NotificationManager()
+    
+    func requestAuthorization() {
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+        
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: options) { success, error in
+                if let error = error{
+                    print("Error:\(error)")
+                }else{
+                    print("Yay")
+                }
+            }
+    }
+    
+    func sendNotification(){
+        let content = UNMutableNotificationContent()
+        content.title = "Favourite"
+        content.subtitle = "We will save your selection!"
+        content.sound = .default
+        content.badge = 1
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: content,
+            trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
+    }
+}
+
 
 struct LocationPreviewView: View {
     
@@ -76,7 +112,8 @@ extension LocationPreviewView{
     
     private var favButton: some View{
         Button{
-            
+            NotificationManager.instance.requestAuthorization()
+            NotificationManager.instance.sendNotification()
         } label: {
             Text("Favourite")
                 .font(.headline)
