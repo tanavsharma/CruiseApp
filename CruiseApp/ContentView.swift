@@ -342,6 +342,7 @@ struct UserScreen: View {
                 .environmentObject(vm)
             }
         }
+        .sheet()
         .navigationTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
