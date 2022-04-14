@@ -34,20 +34,9 @@ struct Home: View{
         VStack{
             NavigationView{
                 ZStack{
-                    NavigationLink(destination: Register(show: self.$show, successSignup: self.$successSignup), isActive: self.$show){
-                        
-                    }
-                    .hidden()
-                    
-                    NavigationLink(destination: UserScreen(sucessLogin: self.$sucessLogin), isActive: self.$sucessLogin){
-                        
-                    }
-                    .hidden()
-                    
-                    NavigationLink(destination: MoreInformation(successSignup: self.$successSignup, sucessLogin: self.$sucessLogin), isActive: self.$successSignup){
-                        
-                    }
-                    .hidden()
+                    NavigationLink(destination: Register(show: self.$show, successSignup: self.$successSignup), isActive: self.$show){}.hidden()
+                    NavigationLink(destination: UserScreen(sucessLogin: self.$sucessLogin), isActive: self.$sucessLogin){}.hidden()
+                    NavigationLink(destination: MoreInformation(successSignup: self.$successSignup, sucessLogin: self.$sucessLogin), isActive: self.$successSignup){}.hidden()
                     
                     Login(show: self.$show, sucessLogin: self.$sucessLogin)
                 }
@@ -181,6 +170,7 @@ struct Register: View {
     @State var revisible = false
     @Binding var show : Bool
     @Binding var successSignup: Bool
+    
     let auth = Auth.auth()
     
     var body: some View{

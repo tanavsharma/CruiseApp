@@ -11,6 +11,7 @@ import MapKit
 class LocationsDataService {
     
     static let locations: [Location] = [
+        
         Location(
             name: "CN Tower Cruise",
             cityName: "Toronto",

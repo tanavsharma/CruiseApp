@@ -31,7 +31,7 @@ class NotificationManager{
         content.sound = .default
         content.badge = 1
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 15, repeats: true)
         
         let request = UNNotificationRequest(
             identifier: UUID().uuidString,
@@ -41,7 +41,6 @@ class NotificationManager{
         UNUserNotificationCenter.current().add(request)
     }
 }
-
 
 struct LocationPreviewView: View {
     
@@ -56,6 +55,7 @@ struct LocationPreviewView: View {
             }
             
             VStack(spacing: 8){
+                detailsButton
                 favButton
                 nextButton
             }
@@ -108,6 +108,17 @@ extension LocationPreviewView{
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         
+    }
+    
+    private var detailsButton: some View{
+        Button{
+            //
+        } label: {
+            Text("Details")
+                .font(.headline)
+                .frame(width: 125, height: 35)
+        }
+        .buttonStyle(.borderedProminent)
     }
     
     private var favButton: some View{

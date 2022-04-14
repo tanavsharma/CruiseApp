@@ -12,7 +12,7 @@ import MapKit
 // MARK: Every location must have the following
 
 struct Location: Identifiable, Equatable {
-
+    
     let name: String
     let cityName: String
     let coordinates: CLLocationCoordinate2D

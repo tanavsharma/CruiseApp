@@ -11,7 +11,11 @@ import MapKit
 
 // MARK: MAP Screen ViewModel
 class LocationsViewModel: ObservableObject{
+    
+    //All Loaded Locations
     @Published var locations: [Location]
+    
+    //Current Location On Map  
     @Published var mapLocation: Location{
         didSet{
             updateMapRegion(location: mapLocation)
@@ -20,6 +24,7 @@ class LocationsViewModel: ObservableObject{
     
     //Show current region on map
     @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion()
+    
     let mapSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
     
     // Show list of locations
