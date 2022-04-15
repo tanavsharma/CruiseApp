@@ -15,8 +15,7 @@
 		0342D91627E13C4E008AE932 /* CruiseAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342D91527E13C4E008AE932 /* CruiseAppUITests.swift */; };
 		0342D91827E13C4E008AE932 /* CruiseAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342D91727E13C4E008AE932 /* CruiseAppUITestsLaunchTests.swift */; };
 		0366A7A72808CC5100E928A8 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366A7A62808CC5100E928A8 /* LocationDetailView.swift */; };
-		0366A7A92808DA8600E928A8 /* Bookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366A7A82808DA8600E928A8 /* Bookings.swift */; };
-		0366A7AB2808DAF400E928A8 /* BookingsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366A7AA2808DAF300E928A8 /* BookingsDataService.swift */; };
+		0366A7AF280900B900E928A8 /* NumberOfPassangers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366A7AE280900B800E928A8 /* NumberOfPassangers.swift */; };
 		0382DA9427E27F84007F6B66 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0382DA9327E27F84007F6B66 /* FirebaseAnalytics */; };
 		0382DA9627E27F84007F6B66 /* FirebaseAnalyticsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 0382DA9527E27F84007F6B66 /* FirebaseAnalyticsSwift-Beta */; };
 		0382DA9827E27F84007F6B66 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 0382DA9727E27F84007F6B66 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -82,8 +81,7 @@
 		0342D91527E13C4E008AE932 /* CruiseAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CruiseAppUITests.swift; sourceTree = "<group>"; };
 		0342D91727E13C4E008AE932 /* CruiseAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CruiseAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0366A7A62808CC5100E928A8 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
-		0366A7A82808DA8600E928A8 /* Bookings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookings.swift; sourceTree = "<group>"; };
-		0366A7AA2808DAF300E928A8 /* BookingsDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsDataService.swift; sourceTree = "<group>"; };
+		0366A7AE280900B800E928A8 /* NumberOfPassangers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfPassangers.swift; sourceTree = "<group>"; };
 		0382DACB27E28386007F6B66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0382DACD27E2838C007F6B66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		03BA070D27E38F300073DB1A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -212,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				03BA070D27E38F300073DB1A /* Location.swift */,
-				0366A7A82808DA8600E928A8 /* Bookings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				03BA071027E390390073DB1A /* LocationsDataService.swift */,
-				0366A7AA2808DAF300E928A8 /* BookingsDataService.swift */,
 			);
 			path = DataServices;
 			sourceTree = "<group>";
@@ -232,6 +228,7 @@
 				03BA071627E3A6CF0073DB1A /* LocationsListView.swift */,
 				03BA071B27E44FF50073DB1A /* LocationPreviewView.swift */,
 				0366A7A62808CC5100E928A8 /* LocationDetailView.swift */,
+				0366A7AE280900B800E928A8 /* NumberOfPassangers.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -409,11 +406,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				03BA071727E3A6CF0073DB1A /* LocationsListView.swift in Sources */,
+				0366A7AF280900B900E928A8 /* NumberOfPassangers.swift in Sources */,
 				03BA071A27E3C1E50073DB1A /* LocationsViewModel.swift in Sources */,
 				0366A7A72808CC5100E928A8 /* LocationDetailView.swift in Sources */,
 				03BA071127E390390073DB1A /* LocationsDataService.swift in Sources */,
-				0366A7A92808DA8600E928A8 /* Bookings.swift in Sources */,
-				0366A7AB2808DAF400E928A8 /* BookingsDataService.swift in Sources */,
 				0342D8FD27E13C4C008AE932 /* ContentView.swift in Sources */,
 				03BA071C27E44FF50073DB1A /* LocationPreviewView.swift in Sources */,
 				03BA070E27E38F300073DB1A /* Location.swift in Sources */,

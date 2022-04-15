@@ -112,7 +112,7 @@ extension LocationPreviewView{
     
     private var detailsButton: some View{
         Button{
-            //
+            vm.sheetLocation = location
         } label: {
             Text("Details")
                 .font(.headline)

@@ -130,7 +130,7 @@ struct Login: View {
                             }
                             
                             // Success
-                            
+                            self.sucessLogin.toggle()
                             
                         }
                     }){
@@ -342,7 +342,10 @@ struct UserScreen: View {
                 .environmentObject(vm)
             }
         }
-        .sheet()
+        .sheet(item: $vm.sheetLocation, onDismiss: nil){ location in
+            LocationDetailView(location: location)
+            
+        }
         .navigationTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)

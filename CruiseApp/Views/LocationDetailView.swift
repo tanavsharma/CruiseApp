@@ -10,11 +10,12 @@ import SwiftUI
 struct LocationDetailView: View {
     
     let passangers = ["1", "2", "3", "4", "5", "6", "7"]
+    @State private var numPax = 1
     @State private var selectedPassangers = "2"
     
-    
+    @EnvironmentObject private var vm: LocationsViewModel
     let location: Location
-    let booking: Bookings
+    
     
     var body: some View {
         ScrollView{
@@ -35,15 +36,14 @@ struct LocationDetailView: View {
             }
         }
         .ignoresSafeArea()
-        .overlay(backButton, alignment: .topLeading)
     }
 }
+
 
 struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
         LocationDetailView(
-            location: LocationsDataService.locations.first!,
-            booking: BookingsDataService.bookings.first!
+            location: LocationsDataService.locations.first!
         )
     }
 }
@@ -92,45 +92,30 @@ extension LocationDetailView {
                 Text("Price per person:")
                     .fontWeight(.semibold)
                     .font(.callout)
-                Text(booking.price)
+                Text("$199.99")
             }
                 
             HStack(spacing: 8){
                 Text("Duration of Cruise:")
                     .fontWeight(.semibold)
                     .font(.callout)
-                Text(booking.duration)
+                Text("2 nights")
             }
         
             Divider()
                 .padding()
             
-            HStack{
-                Text("Number of Passangers:")
-                Picker("Please choose a color", selection: $selectedPassangers) {
-                                ForEach(passangers, id: \.self) {
-                                    Text($0)
-                                }
-                            }
-                }
-                
-            }
+            VStack {
+              Picker(selection: $numPax, label: Text("How Man Travellers?")) {
+                  ForEach(0 ..< passangers.count) {
+                     Text(self.passangers[$0])
+                  }
+               }
+            }.padding()
             
-        }
-    
-    private var backButton: some View{
-        Button{
             
-        }label:{
-            Image(systemName: "xmark")
-                .font(.headline)
-                .padding(16)
-                .foregroundColor(.black)
-                .background(.thickMaterial)
-                .cornerRadius(10)
-                .shadow(radius: 4)
-                .padding()
+            
+
         }
     }
 }
-
