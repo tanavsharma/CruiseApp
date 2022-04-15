@@ -6,14 +6,25 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 struct LocationDetailView: View {
     
-    let passangers = ["1", "2", "3", "4", "5", "6", "7"]
+    @State private var eBill: [String: String] = [:]
     @State private var selectedPassangers = "2"
     @State private var date = Date()
     @State private var numPassangers: String = "1"
     @State var totalCost = 0
+    @State private var nameOnCard: String = ""
+    @State private var cardNumber: String = ""
+    @State private var cardExpiry: String = ""
+    @State private var cardCVV: String = ""
+    
+    let db = Firestore.firestore()
+    let auth = Auth.auth()
+    
+    
     
     @EnvironmentObject private var vm: LocationsViewModel
     let location: Location
@@ -34,8 +45,8 @@ struct LocationDetailView: View {
                     numberOfPassangers
                     datePickerTrip
                     totalCostOfTrip
+                    bookATicket
                     submitButton
-
                 }
                 
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -56,6 +67,7 @@ struct LocationDetailView_Previews: PreviewProvider {
 }
 
 extension LocationDetailView {
+    //Image of Cruise Company
     private var imageSection: some View{
         TabView{
             Image(location.imageName)
@@ -68,6 +80,7 @@ extension LocationDetailView {
         .tabViewStyle(PageTabViewStyle())
     }
     
+    //Title of Cruise Company
     private var titleSection: some View{
         VStack(alignment: .leading, spacing: 8){
             Text(location.name)
@@ -79,6 +92,7 @@ extension LocationDetailView {
         }
     }
     
+    //Description of Cruise Company
     private var descriptionSection: some View{
         VStack(alignment: .leading, spacing: 8){
             Text(location.description)
@@ -90,6 +104,7 @@ extension LocationDetailView {
         }
     }
     
+    //Booking Information
     private var bookingSection: some View {
         
         
@@ -182,11 +197,99 @@ extension LocationDetailView {
         .cornerRadius(10)
     }
     
+    //Payment Card Screen
+    private var bookATicket: some View {
+        VStack(alignment: .center, spacing: 18){
+            
+            Text("Payment Information")
+                .font(.title2)
+                .fontWeight(.bold)
+
+            Divider()
+            
+            VStack(alignment: .center){
+                TextField("Name On Card", text: $nameOnCard)
+            }
+            .frame(height: 55)
+            .padding(10)
+            .background(RoundedRectangle(cornerRadius: 15).fill(.white))
+            .cornerRadius(10)
+            
+            VStack(alignment: .center){
+                TextField("Card Number", text: $cardNumber)
+            }
+            .frame(height: 55)
+            .padding(10)
+            .background(RoundedRectangle(cornerRadius: 15).fill(.white))
+            .cornerRadius(10)
+            
+            Divider()
+            
+            HStack(spacing: 18){
+                VStack{
+                    TextField("Expiry(MM/YY)", text:$cardExpiry)
+                        .padding()
+                }
+                
+                .padding(10)
+                .background(RoundedRectangle(cornerRadius: 15).fill(.white))
+                .cornerRadius(10)
+                
+                VStack{
+                    TextField("CVV", text:$cardCVV)
+                        .padding()
+                }
+                
+                .padding(10)
+                .background(RoundedRectangle(cornerRadius: 15).fill(.white))
+                .cornerRadius(10)
+                
+            }
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 15).fill(.ultraThinMaterial))
+        .cornerRadius(10)
+    }
+    
     //Submit Button
     private var submitButton: some View {
         HStack(spacing: 8){
             Button{
-                //totalCost = Int(numPassangers)! * Int(199.99)
+                /*Take all values such as
+                 * 1. Total Cost
+                 * 2. Name on Card
+                 * 3. Card Number
+                 * 4. Expiry Date
+                 * 5. CVV
+                 *
+                 * and store them into a dictionary.
+                 * then import that dictonary into firebase database
+                 */
+                
+                let user = auth.currentUser!.uid
+                
+                eBill["totalCost"] = String(totalCost)
+                eBill["CardHolderName"] = nameOnCard
+                eBill["CardNumber"] = cardNumber
+                eBill["ExpiryDate"] = cardExpiry
+                eBill["CVV"] = cardCVV
+                
+                let docRef = db.collection(user).document(UUID().uuidString)
+                docRef.setData(eBill){ error in
+                    if let error = error {
+                        print("error: \(error)")
+                    }else{
+                        print("no error")
+                    }
+                    
+                }
+                
+                
+                
+                
+                
+                
+                
             }label: {
                 Text("Book Now")
                     .fontWeight(.bold)
