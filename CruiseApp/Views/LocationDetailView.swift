@@ -10,8 +10,10 @@ import SwiftUI
 struct LocationDetailView: View {
     
     let passangers = ["1", "2", "3", "4", "5", "6", "7"]
-    @State private var numPax = 1
     @State private var selectedPassangers = "2"
+    @State private var date = Date()
+    @State private var numPassangers: String = "1"
+    @State var totalCost = 0
     
     @EnvironmentObject private var vm: LocationsViewModel
     let location: Location
@@ -29,6 +31,11 @@ struct LocationDetailView: View {
                     descriptionSection
                     Divider()
                     bookingSection
+                    numberOfPassangers
+                    datePickerTrip
+                    totalCostOfTrip
+                    submitButton
+
                 }
                 
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -104,13 +111,92 @@ extension LocationDetailView {
         
             Divider()
                 .padding()
-            
-            NumberOfPassangers()
-            DatePickerView()
-            
-            
-            
-
         }
     }
+    
+    //Number of Passangers
+    private var numberOfPassangers: some View {
+        VStack(alignment: .leading, spacing: 8){
+            HStack(spacing: 8){
+                VStack(spacing: 8){
+                    Text("Number Of Travellers")
+                        .fontWeight(.bold)
+                        .frame(height: 55)
+                }
+                
+                VStack(spacing: 8){
+                    TextField("1", text: $numPassangers, onEditingChanged: {_ in
+                        totalCost = Int(numPassangers)! * Int(199.99)
+                    })
+                        .multilineTextAlignment(.center)
+                        .frame(height: 55)
+                }
+            }
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 15).fill(.ultraThinMaterial))
+            .cornerRadius(10)
+        }
+    }
+    
+    //DatePicker
+    private var datePickerTrip: some View {
+        
+        HStack(spacing: 8){
+            VStack(spacing: 16){
+                Text("Departure Date")
+                    .fontWeight(.bold)
+                    .frame(height: 55)
+                    .font(.headline)
+            }
+            
+            VStack(spacing: 8){
+                DatePicker("", selection: $date, in: Date()..., displayedComponents: .date)
+                
+            }
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 15).fill(.ultraThinMaterial))
+        .cornerRadius(10)
+    }
+    
+    //Total Cost
+    private var totalCostOfTrip: some View{
+        HStack(spacing: 8){
+            VStack(spacing: 8){
+                Text("Total Cost")
+                    .fontWeight(.bold)
+                    .frame(height: 55)
+                    .font(.headline)
+            }
+            
+            VStack(spacing: 8){
+                Text("$\(totalCost)")
+                    .fontWeight(.bold)
+                    .frame(height: 55)
+                    .font(.headline)
+            }
+        }
+        .frame(width: 370, height: 55, alignment: .center)
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 15).fill(.clear))
+        .cornerRadius(10)
+    }
+    
+    //Submit Button
+    private var submitButton: some View {
+        HStack(spacing: 8){
+            Button{
+                //totalCost = Int(numPassangers)! * Int(199.99)
+            }label: {
+                Text("Book Now")
+                    .fontWeight(.bold)
+                    .font(.headline)
+            }
+            .frame(width: 370, height: 55, alignment: .center)
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 15).fill(.ultraThinMaterial))
+        .font(.headline)
+    }
+
 }
