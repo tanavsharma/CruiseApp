@@ -16,6 +16,8 @@
 		0342D91827E13C4E008AE932 /* CruiseAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342D91727E13C4E008AE932 /* CruiseAppUITestsLaunchTests.swift */; };
 		0366A7A72808CC5100E928A8 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366A7A62808CC5100E928A8 /* LocationDetailView.swift */; };
 		0366A7AF280900B900E928A8 /* NumberOfPassangers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366A7AE280900B800E928A8 /* NumberOfPassangers.swift */; };
+		0366A7B128090ACF00E928A8 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366A7B028090ACF00E928A8 /* DatePickerView.swift */; };
+		0366A7B32809FF1800E928A8 /* CalculateTotalCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366A7B22809FF1800E928A8 /* CalculateTotalCost.swift */; };
 		0382DA9427E27F84007F6B66 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0382DA9327E27F84007F6B66 /* FirebaseAnalytics */; };
 		0382DA9627E27F84007F6B66 /* FirebaseAnalyticsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 0382DA9527E27F84007F6B66 /* FirebaseAnalyticsSwift-Beta */; };
 		0382DA9827E27F84007F6B66 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 0382DA9727E27F84007F6B66 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -82,6 +84,8 @@
 		0342D91727E13C4E008AE932 /* CruiseAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CruiseAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0366A7A62808CC5100E928A8 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		0366A7AE280900B800E928A8 /* NumberOfPassangers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfPassangers.swift; sourceTree = "<group>"; };
+		0366A7B028090ACF00E928A8 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		0366A7B22809FF1800E928A8 /* CalculateTotalCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTotalCost.swift; sourceTree = "<group>"; };
 		0382DACB27E28386007F6B66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0382DACD27E2838C007F6B66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		03BA070D27E38F300073DB1A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 				03BA071B27E44FF50073DB1A /* LocationPreviewView.swift */,
 				0366A7A62808CC5100E928A8 /* LocationDetailView.swift */,
 				0366A7AE280900B800E928A8 /* NumberOfPassangers.swift */,
+				0366A7B028090ACF00E928A8 /* DatePickerView.swift */,
+				0366A7B22809FF1800E928A8 /* CalculateTotalCost.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -407,6 +413,7 @@
 			files = (
 				03BA071727E3A6CF0073DB1A /* LocationsListView.swift in Sources */,
 				0366A7AF280900B900E928A8 /* NumberOfPassangers.swift in Sources */,
+				0366A7B32809FF1800E928A8 /* CalculateTotalCost.swift in Sources */,
 				03BA071A27E3C1E50073DB1A /* LocationsViewModel.swift in Sources */,
 				0366A7A72808CC5100E928A8 /* LocationDetailView.swift in Sources */,
 				03BA071127E390390073DB1A /* LocationsDataService.swift in Sources */,
@@ -414,6 +421,7 @@
 				03BA071C27E44FF50073DB1A /* LocationPreviewView.swift in Sources */,
 				03BA070E27E38F300073DB1A /* Location.swift in Sources */,
 				0342D8FB27E13C4C008AE932 /* CruiseAppApp.swift in Sources */,
+				0366A7B128090ACF00E928A8 /* DatePickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,23 +7,23 @@
 
 import SwiftUI
 
-struct NumberOfPassangers: View {
+struct DatePickerView: View {
     
     @State private var numPax: String = ""
+    @State private var date = Date()
     
     var body: some View {
         HStack(alignment: .center, spacing: 0){
             VStack(spacing: 16){
-                Text("Number Of Passangers")
+                Text("Departure Date")
                     .fontWeight(.bold)
                     .frame(width: 190, height: 55, alignment: .leading)
                     .font(.headline)
             }
             
             VStack(spacing: 16){
-                TextField("3", text: $numPax)
-                    .frame(width: 190, height: 55, alignment: .center)
-                    .multilineTextAlignment(.center)
+                DatePicker("", selection: $date, in: Date()..., displayedComponents: .date)
+                
             }
         }
         .padding(10)
@@ -34,8 +34,12 @@ struct NumberOfPassangers: View {
     }
 }
 
-struct NumberOfPassangers_Previews: PreviewProvider {
+struct DatePickerView_Previews: PreviewProvider {
     static var previews: some View {
-        NumberOfPassangers()
+        DatePickerView()
     }
 }
+
+
+
+

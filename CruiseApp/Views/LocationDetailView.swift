@@ -105,13 +105,8 @@ extension LocationDetailView {
             Divider()
                 .padding()
             
-            VStack {
-              Picker(selection: $numPax, label: Text("How Man Travellers?")) {
-                  ForEach(0 ..< passangers.count) {
-                     Text(self.passangers[$0])
-                  }
-               }
-            }.padding()
+            NumberOfPassangers()
+            DatePickerView()
             
             
             
