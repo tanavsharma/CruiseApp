@@ -48,7 +48,6 @@ struct LocationDetailView: View {
                     bookATicket
                     submitButton
                 }
-                
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
             }
@@ -68,7 +67,7 @@ struct LocationDetailView_Previews: PreviewProvider {
 
 extension LocationDetailView {
     //Image of Cruise Company
-    private var imageSection: some View{
+    private var imageSection: some View {
         TabView{
             Image(location.imageName)
                 .resizable()
@@ -81,7 +80,7 @@ extension LocationDetailView {
     }
     
     //Title of Cruise Company
-    private var titleSection: some View{
+    private var titleSection: some View {
         VStack(alignment: .leading, spacing: 8){
             Text(location.name)
                 .font(.largeTitle)
@@ -93,7 +92,7 @@ extension LocationDetailView {
     }
     
     //Description of Cruise Company
-    private var descriptionSection: some View{
+    private var descriptionSection: some View {
         VStack(alignment: .leading, spacing: 8){
             Text(location.description)
                 .font(.subheadline)
@@ -175,7 +174,7 @@ extension LocationDetailView {
     }
     
     //Total Cost
-    private var totalCostOfTrip: some View{
+    private var totalCostOfTrip: some View {
         HStack(spacing: 8){
             VStack(spacing: 8){
                 Text("Total Cost")
@@ -191,7 +190,7 @@ extension LocationDetailView {
                     .font(.headline)
             }
         }
-        .frame(width: 370, height: 55, alignment: .center)
+        .frame(width: UIScreen.main.bounds.width-55, height: 55, alignment: .trailing)
         .padding()
         .background(RoundedRectangle(cornerRadius: 15).fill(.clear))
         .cornerRadius(10)
@@ -227,7 +226,7 @@ extension LocationDetailView {
             
             HStack(spacing: 18){
                 VStack{
-                    TextField("Expiry(MM/YY)", text:$cardExpiry)
+                    TextField("Expiry", text:$cardExpiry)
                         .padding()
                 }
                 
@@ -255,14 +254,16 @@ extension LocationDetailView {
     private var submitButton: some View {
         HStack(spacing: 8){
             Button{
+                
                 /*Take all values such as
+                 *
                  * 1. Total Cost
                  * 2. Name on Card
                  * 3. Card Number
                  * 4. Expiry Date
                  * 5. CVV
-                 *
-                 * and store them into a dictionary.
+                 * * * * * * * * * * * * * * * * * * * * * * * * * *
+                 * and store them into a dictionary. * * * * * * * *
                  * then import that dictonary into firebase database
                  */
                 
@@ -281,25 +282,18 @@ extension LocationDetailView {
                     }else{
                         print("no error")
                     }
-                    
                 }
-                
-                
-                
-                
-                
-                
-                
+            
             }label: {
                 Text("Book Now")
                     .fontWeight(.bold)
                     .font(.headline)
             }
-            .frame(width: 370, height: 55, alignment: .center)
+            
         }
+        .frame(width: UIScreen.main.bounds.width-55, height: 55, alignment: .center)
         .padding()
         .background(RoundedRectangle(cornerRadius: 15).fill(.ultraThinMaterial))
         .font(.headline)
     }
-
 }
